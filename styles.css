@@ -134,6 +134,7 @@ footer {
 }
 
 @media only screen and (max-width: 500px) {
+<<<<<<< HEAD
     .gameBoard { gap: 10px; }
     .cell { width: 100px; height: 100px; }
     footer { font-size: 12px; }
@@ -148,3 +149,9 @@ footer {
     .modal { left: 4%; font-size: 25px; width: 310px; }
     #chooseX, #chooseO { font-size: 40px; }
 }
+=======
+    .modal {
+        left: 14%;
+    }
+}
+>>>>>>> 88c830925462bee3fa4286b47900bea78568b264
