@@ -1,0 +1,140 @@
+:root {
+    --clrDark1: #3C0000;
+    --clrDark2: #A20000;
+    --clrNeutro: #EE0000;
+    --clrLight1: #FF3B3B;
+    --clrLight2: #FF8080;
+
+    --font1: 'Gamer Station', sans-serif;
+    --font2: 'Super Squad', sans-serif;
+}
+
+* { padding: 0; margin: 0; box-sizing: border-box;}
+
+body { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+body::-webkit-scrollbar { width: 8px; }
+body::-webkit-scrollbar-thumb { background-color: var(--clrLight2); }
+body::-webkit-scrollbar-track { background-color: var(--clrDark1); } 
+
+header { 
+    display: flex; justify-content: center; align-items: center; 
+    height: 5rem;
+    background-color: var(--clrDark1);
+    color: var(--clrLight2);
+    font-family: var(--font1);
+    font-size: 20px;
+    letter-spacing: 12px;
+}
+
+main { 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0px;
+    background-color: var(--clrLight2);
+}
+
+.displayPlayer {
+    font-family: var(--font2);
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+.gameBoard {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.cell {
+    width: 150px; height: 150px;
+    display: flex; justify-content: center; align-items: center;
+    font-family: var(--font2); font-size: 70px;
+    background-color: var(--clrLight1);
+    box-shadow: 5.5px 6px var(--clrDark2);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.restart {
+    width: 120px;
+    height: 6vh;
+    background-color: black; color: var(--clrNeutro);
+    font-family: var(--font2); font-size: 13px;
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 8px;
+    cursor: grab;
+}
+.restart:hover {
+    background-color: var(--clrNeutro);
+    color: black;
+}
+
+footer { 
+    height: 2.8rem; 
+    display: flex; flex-direction: row; justify-content: center; 
+    align-items: center; gap: 8px;
+    background-color: var(--clrDark1);
+    color: var(--clrLight2);
+    font-family: var(--font1);
+    font-size: 15px;
+    letter-spacing: 5px;
+}
+.fa { transition: transform 0.2s ease-in-out; color: var(--clrLight1);}
+.fa:hover { transform: rotate(360deg) scale(1.2);}
+
+.modal {
+    display: none; position: fixed; z-index: 1;
+    left: 38%; top: 30%;
+    width: 370px; height: 40%;
+    font-family: var(--font1); font-size: 30px;
+    color: var(--clrLight2); letter-spacing: 10px;
+    text-transform: uppercase; text-align: center;
+    background-color: var(--clrDark1);
+    border-radius: 25px;
+    box-shadow: 6px 5px 2px var(--clrLight1);
+}
+.signChoice {
+    height: 100%;
+    display: flex; flex-direction: column; 
+    justify-content: center; align-items: center;
+    gap: 25px;
+    padding: 10px;
+}
+.playerChoice {
+    height: 58%;
+    display: flex; flex-direction: column; gap: 20px;
+}
+#chooseX, #chooseO {
+    font-family: var(--font1); font-size: 50px;
+    padding: 10px;
+    width: 30vh;
+    height: 10vh;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
+#chooseX:hover, #chooseO:hover {
+    background-color: white;
+    color: black;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(255,255,255, 0.6);
+}
+
+@media only screen and (max-width: 500px) {
+    .modal {
+        left: 14%;
+    }
+}
