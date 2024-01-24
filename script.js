@@ -2,8 +2,8 @@ const displayPlayer = document.querySelector(".displayPlayer");
 const gameBoard = document.querySelector(".gameBoard");
 const restart = document.querySelector(".restart");
 
-let currentPlayer = "Player"; // Inizia con il Player
-let gameActive = false; // Inizia il gioco solo dopo la scelta del segno
+let currentPlayer = "Player";
+let gameActive = false;
 let moves = 0;
 let cells = [];
 
@@ -12,7 +12,6 @@ let computerSign = "";
 
 window.addEventListener("load", showModal);
 
-// Funzione per mostrare il modal
 function showModal() {
     const modal = document.getElementById("pickSignModal");
     modal.style.display = "flex";
@@ -20,15 +19,15 @@ function showModal() {
 
 // Inizia il gioco solo dopo che il segno è stato scelto
 function startGameWithSign(sign) {
-    userSign = sign;
-    computerSign = userSign === "X" ? "O" : "X";
-
     const modal = document.getElementById("pickSignModal");
     modal.style.display = "none";
 
-    currentPlayer = "Player";
-    gameActive = true; // Abilita il gioco
+    userSign = sign;
+    computerSign = userSign === "X" ? "O" : "X";
+
+    gameActive = true;
     createGameBoard();
+    currentPlayer = "Player";
 }
 document.getElementById("chooseX").addEventListener("click", () => startGameWithSign("X"));
 document.getElementById("chooseO").addEventListener("click", () => startGameWithSign("O"));
@@ -56,11 +55,13 @@ function handleCellClick(cell) {
     if (checkWin(sign)) {
         displayPlayer.textContent = currentPlayer + " wins!";
         gameActive = false;
-        createRestartBtn()
+        restartBtn()
+        restart.addEventListener("click", restartGame);
     } else if (moves === 9) {
         displayPlayer.textContent = "It's a tie!";
         gameActive = false;
-        createRestartBtn()
+        restartBtn()
+        restart.addEventListener("click", restartGame);
     } else {
         currentPlayer = currentPlayer === "Player" ? "Computer" : "Player";
         displayPlayer.textContent =  `${currentPlayer}'s turn`;
@@ -71,12 +72,11 @@ function handleCellClick(cell) {
     }
 }
 
-function createRestartBtn() {
+function restartBtn() {
     const restartBtn = document.createElement('button')
     restartBtn.id = 'btn-restart'
     restartBtn.textContent = "Restart"
 
-    restartBtn.addEventListener("click", restartGame);
     restart.append(restartBtn)
 }
 
@@ -97,26 +97,26 @@ function checkWin(sign) {
 // Simula la mossa del computer
 function makeComputerMove() {
     setTimeout(() => {
-        if (!gameActive) return; // Controlla se il gioco è ancora attivo
-            const emptyCells = cells.filter((cell) => cell.textContent === "");
-            const randomIndex = Math.floor(Math.random() * emptyCells.length);
-            const randomCell = emptyCells[randomIndex];
-            handleCellClick(randomCell);
-    }, 1500);
+        if (!gameActive) return;
+        
+        const emptyCells = cells.filter((cell) => cell.textContent === "");
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const randomCell = emptyCells[randomIndex];
+        
+        handleCellClick(randomCell);
+    }, 1000);
 }
 
 // Funzione per riavviare il gioco
 function restartGame() {
-    showModal();
+    const restartBtn = document.getElementById('btn-restart');
+    restartBtn.remove();
 
-    displayPlayer.innerHTML = "";
+    displayPlayer.textContent = "";
+    cells = [];
     gameBoard.innerHTML = "";
-    restart.innerHTML = "";
-    
-    cells.forEach((cell) => {
-        cell.textContent = "";
-    });
 
+    showModal();
     currentPlayer = "Player";
     gameActive = false;
     moves = 0;
