@@ -7,10 +7,10 @@ let gameActive = false; // Inizia il gioco solo dopo la scelta del segno
 let moves = 0;
 let cells = [];
 
-let userSign = ""; // Memorizza il segno scelto dall'utente
-let computerSign = ""; // Memorizza il segno del computer
+let userSign = "";
+let computerSign = "";
 
-window.addEventListener("load", showModal); // Mostra il modal quando la pagina viene caricata
+window.addEventListener("load", showModal);
 
 // Funzione per mostrare il modal
 function showModal() {
@@ -56,11 +56,11 @@ function handleCellClick(cell) {
     if (checkWin(sign)) {
         displayPlayer.textContent = currentPlayer + " wins!";
         gameActive = false;
-        restart.style.display = "block";
+        createRestartBtn()
     } else if (moves === 9) {
         displayPlayer.textContent = "It's a tie!";
         gameActive = false;
-        restart.style.display = "block";
+        createRestartBtn()
     } else {
         currentPlayer = currentPlayer === "Player" ? "Computer" : "Player";
         displayPlayer.textContent =  `${currentPlayer}'s turn`;
@@ -69,6 +69,15 @@ function handleCellClick(cell) {
             makeComputerMove();
         }
     }
+}
+
+function createRestartBtn() {
+    const restartBtn = document.createElement('button')
+    restartBtn.id = 'btn-restart'
+    restartBtn.textContent = "Restart"
+
+    restartBtn.addEventListener("click", restartGame);
+    restart.append(restartBtn)
 }
 
 // Funzione per determinare il vincitore
@@ -99,6 +108,10 @@ function makeComputerMove() {
 // Funzione per riavviare il gioco
 function restartGame() {
     showModal();
+
+    displayPlayer.innerHTML = "";
+    gameBoard.innerHTML = "";
+    restart.innerHTML = "";
     
     cells.forEach((cell) => {
         cell.textContent = "";
@@ -108,4 +121,3 @@ function restartGame() {
     gameActive = false;
     moves = 0;
 }
-// restartButton.addEventListener("click", restartGame);
