@@ -52,6 +52,7 @@ main {
     justify-content: center;
     align-items: center;
     background-color: var(--clrLight2);
+    padding: 12px 0;
 }
 
 .displayPlayer {
@@ -109,9 +110,8 @@ main {
 
 /* FOOTER */
 footer {
-    height: 2.8rem;
+    padding: 14px 0;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -159,7 +159,7 @@ footer {
 }
 
 .title-modal {
-    padding: 38px 30px 0 30px; /*top right bottom left*/
+    padding: 38px 35px 0 35px; /*top right bottom left*/
 }
 
 .playerChoice {
@@ -172,7 +172,7 @@ footer {
 #chooseO {
     font-family: var(--font1);
     font-size: 42px;
-    padding: 20px 20px 15px 20px;
+    padding: 20px 0 15px;
     width: 100px;
     background-color: black;
     color: white;
@@ -186,18 +186,40 @@ footer {
     color: black;
 }
 
-/* @media only screen and (max-width: 500px) {
-    .gameBoard { gap: 10px; }
-    .cell { width: 100px; height: 100px; }
-    footer { font-size: 12px; }
-    .modal { left: 12%; font-size: 25px; width: 310px; }
-    #chooseX, #chooseO { font-size: 40px; }
+@media only screen and (max-width: 470px) {
+    footer { font-size: 13px; letter-spacing: 2px; }
 }
 
-@media only screen and (max-width: 350px) {
-    header { font-size: 15px; }
-    .cell { width: 100px; height: 100px; }
-    footer { font-size: 8px; letter-spacing: 2.5px;}
-    .modal { left: 4%; font-size: 25px; width: 310px; }
-    #chooseX, #chooseO { font-size: 40px; }
-} */
+@media only screen and (max-width: 400px) {
+    .cell {
+        width: 100px;
+        height: 100px;
+        font-size: 50px;
+    }
+
+    .signChoice {
+        font-size: 25px;
+        letter-spacing: 8px;
+    }
+    #chooseX,
+    #chooseO {
+        font-size: 35px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    header {
+        font-size: 16px;
+    }
+
+    .cell {
+        width: 90px;
+        height: 90px;
+        font-size: 45px;
+    }
+
+    footer { letter-spacing: 1px; }
+    .title-modal {
+        padding: 38px 25px 0 25px;
+    }
+}
