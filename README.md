@@ -1,3 +1,3 @@
-# TicTacToe_Game
+# TicTacToe Game
 
 A replica of the famous [TicTacToe game](https://arianagutierrez.github.io/TicTacToe_Game/).
